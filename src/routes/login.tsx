@@ -62,7 +62,12 @@ function LoginPage() {
             ? "Too many attempts. Please wait a moment and try again."
             : normalized.includes("missing supabase")
               ? "Sign-in is temporarily unavailable. Please try again shortly."
-              : msg;
+              : normalized.includes("failed to fetch") ||
+                  normalized.includes("fetch failed") ||
+                  normalized.includes("networkerror") ||
+                  normalized.includes("load failed")
+                ? "Cannot reach the sign-in service. Check your internet connection and try again."
+                : msg;
       toast.error(friendly);
     } finally {
       setBusy(false);
