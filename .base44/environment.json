@@ -4,6 +4,21 @@
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
   "secrets": [
     {
+      "name": "VITE_PUBLIC_SUPABASE_URL",
+      "description": "Project URL of the user's own Supabase project (https://<ref>.supabase.co). Must be the bare URL only — no surrounding prose, quotes or backticks, or the browser client cannot be constructed.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "SUPABASE_URL",
+      "description": "Same Project URL as VITE_PUBLIC_SUPABASE_URL; consumed by server-side Supabase operations.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+      "description": "Publishable (sb_publishable_… or legacy anon) key of that same Supabase project. Used in the browser.",
+      "requiredAtBoot": false
+    },
+    {
       "name": "SUPABASE_SERVICE_ROLE_KEY",
       "description": "Supabase service-role key for admin/server-side operations (deposit settlement, push notifications, email). Obtain from Supabase dashboard → Settings → API → service_role key.",
       "requiredAtBoot": false
