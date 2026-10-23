@@ -15,7 +15,7 @@
     },
     {
       "name": "VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
-      "description": "Publishable (sb_publishable_… or legacy anon) key of that same Supabase project. Used in the browser.",
+      "description": "Publishable (sb_publishable_… or legacy anon) key of that same Supabase project. Used by the browser client and by the server-side auth middleware when it verifies session tokens; it must belong to the same project as the URL above.",
       "requiredAtBoot": false
     },
     {
