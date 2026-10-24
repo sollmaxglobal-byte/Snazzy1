@@ -13,12 +13,12 @@ import { AuthShell } from "@/components/AuthShell";
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
-      { title: "Forgot password — JumboCM" },
+      { title: "Forgot password — WealthBridgeCM" },
       {
         name: "description",
-        content: "Request a secure reset link to regain access to your JumboCM account.",
+        content: "Request a secure reset link to regain access to your WealthBridgeCM account.",
       },
-      { property: "og:title", content: "Forgot password — JumboCM" },
+      { property: "og:title", content: "Forgot password — WealthBridgeCM" },
       { property: "og:description", content: "Request a secure password reset link." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -27,10 +27,10 @@ import { AITradingRobot } from "@/components/AITradingRobot";
 export const Route = createFileRoute("/dashboard/")({
   head: () => ({
     meta: [
-      { title: "Account overview — JumboCM" },
-      { name: "description", content: "View your JumboCM balance, profit and active investments." },
-      { property: "og:title", content: "Account overview — JumboCM" },
-      { property: "og:description", content: "Your secure JumboCM account overview." },
+      { title: "Account overview — WealthBridgeCM" },
+      { name: "description", content: "View your WealthBridgeCM balance, profit and active investments." },
+      { property: "og:title", content: "Account overview — WealthBridgeCM" },
+      { property: "og:description", content: "Your secure WealthBridgeCM account overview." },
       { property: "og:type", content: "website" },
       { property: "twitter:card", content: "summary" },
     ],

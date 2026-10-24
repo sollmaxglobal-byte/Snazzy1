@@ -13,15 +13,15 @@ import { AuthShell, AuthField } from "@/components/AuthShell";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Create your account — JumboCM" },
+      { title: "Create your account — WealthBridgeCM" },
       {
         name: "description",
-        content: "Register a free JumboCM account in under a minute and start investing in XAF.",
+        content: "Register a free WealthBridgeCM account in under a minute and start investing in XAF.",
       },
-      { property: "og:title", content: "Create your account — JumboCM" },
+      { property: "og:title", content: "Create your account — WealthBridgeCM" },
       {
         property: "og:description",
-        content: "Register a free JumboCM account in under a minute.",
+        content: "Register a free WealthBridgeCM account in under a minute.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -143,7 +143,7 @@ function RegisterPage() {
           {busy ? <><Loader2 className="h-4 w-4 animate-spin" /> {t("common.pleaseWait")}</> : <>{t("auth.signUp")} <ArrowRight className="h-4 w-4" /></>}
         </button>
         <p className="text-center text-[10px] leading-snug text-auth-muted">
-          By continuing you agree to the JumboCM terms and privacy policy.
+          By continuing you agree to the WealthBridgeCM terms and privacy policy.
         </p>
       </form>
 

@@ -1,6 +1,6 @@
-# JumboCM
+# WealthBridgeCM
 
-**Live app**: https://jumbocm.vercel.app
+**Live app**: https://wealthbridgecm.vercel.app
 
 Built with TanStack Start, React, Tailwind CSS and Supabase, deployed on Vercel.
 

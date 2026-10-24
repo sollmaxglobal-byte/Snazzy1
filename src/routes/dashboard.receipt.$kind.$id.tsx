@@ -11,14 +11,14 @@ import { useI18n } from "@/hooks/useI18n";
 export const Route = createFileRoute("/dashboard/receipt/$kind/$id")({
   head: () => ({
     meta: [
-      { title: "Transaction receipt — JumboCM" },
+      { title: "Transaction receipt — WealthBridgeCM" },
       {
         name: "description",
         content:
-          "Official JumboCM transaction receipt with full payment details and transaction ID.",
+          "Official WealthBridgeCM transaction receipt with full payment details and transaction ID.",
       },
-      { property: "og:title", content: "Transaction receipt — JumboCM" },
-      { property: "og:description", content: "Official JumboCM transaction receipt." },
+      { property: "og:title", content: "Transaction receipt — WealthBridgeCM" },
+      { property: "og:description", content: "Official WealthBridgeCM transaction receipt." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -158,7 +158,7 @@ function ReceiptPage() {
     ]);
   }
   if (row.admin_note)
-    raw.push([fr ? "Note de JumboCM" : "Note from JumboCM", row.admin_note, row.admin_note]);
+    raw.push([fr ? "Note de WealthBridgeCM" : "Note from WealthBridgeCM", row.admin_note, row.admin_note]);
 
   // Only render fields that actually have a value (no empty / placeholder rows).
   const rows: Array<[string, React.ReactNode]> = raw
@@ -227,7 +227,7 @@ function ReceiptPage() {
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
-              <div className="text-xl font-black uppercase text-primary">JumboCM</div>
+              <div className="text-xl font-black uppercase text-primary">WealthBridgeCM</div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
                 {fr ? "Reçu officiel de transaction" : "Official transaction receipt"}
               </div>
@@ -275,14 +275,14 @@ function ReceiptPage() {
             <div>
               <div className="mb-1 h-6 w-36 border-b border-foreground/40" />
               <span className="text-[9px] uppercase tracking-widest">
-                {fr ? "Signature autorisée · JumboCM" : "Authorised signature · JumboCM"}
+                {fr ? "Signature autorisée · WealthBridgeCM" : "Authorised signature · WealthBridgeCM"}
               </span>
             </div>
           </div>
           <div className="print-stamp relative h-24 w-24 shrink-0">
             <div className="absolute inset-0 -rotate-12 rounded-full border-4 border-success/60 text-success">
               <div className="flex h-full w-full flex-col items-center justify-center rounded-full border border-success/40 text-center">
-                <span className="text-[9px] font-bold uppercase tracking-widest">JumboCM</span>
+                <span className="text-[9px] font-bold uppercase tracking-widest">WealthBridgeCM</span>
                 <ShieldCheck className="my-0.5 h-5 w-5" />
                 <span className="text-[9px] font-bold uppercase tracking-widest">
                   {fr ? "Vérifié" : "Verified"}
@@ -297,8 +297,8 @@ function ReceiptPage() {
 
         <div className="border-t-2 border-border px-5 py-2.5 text-center text-[9px] font-black uppercase text-muted-foreground">
           {fr
-            ? "JumboCM · Douala, Cameroun · Ce document est valable sans signature manuscrite"
-            : "JumboCM · Douala, Cameroon · This document is valid without a handwritten signature"}
+            ? "WealthBridgeCM · Douala, Cameroun · Ce document est valable sans signature manuscrite"
+            : "WealthBridgeCM · Douala, Cameroon · This document is valid without a handwritten signature"}
         </div>
       </article>
 

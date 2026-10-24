@@ -61,7 +61,7 @@ export function TradingBot({ investments }: { investments: BotInvestment[] }) {
         <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-b from-success/15 to-transparent">
           <motion.img
             src={robotImg}
-            alt="JumboCM trading robot"
+            alt="WealthBridgeCM trading robot"
             width={1024}
             height={1024}
             className="h-full w-full object-cover object-top"

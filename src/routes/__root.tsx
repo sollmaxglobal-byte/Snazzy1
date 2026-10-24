@@ -82,14 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "JumboCM — Grow your capital with confidence" },
+      { title: "WealthBridgeCM — Grow your capital with confidence" },
       {
         name: "description",
         content:
-          "JumboCM is a professional investment platform in Cameroon. Earn daily returns in XAF with secure, transparent plans.",
+          "WealthBridgeCM is a professional investment platform in Cameroon. Earn daily returns in XAF with secure, transparent plans.",
       },
-      { name: "author", content: "JumboCM" },
-      { property: "og:title", content: "JumboCM — Grow your capital with confidence" },
+      { name: "author", content: "WealthBridgeCM" },
+      { property: "og:title", content: "WealthBridgeCM — Grow your capital with confidence" },
       {
         property: "og:description",
         content:
@@ -98,11 +98,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "theme-color", content: "#171a1b" },
-      { property: "og:url", content: "https://jumbocm.vercel.app/" },
-      { property: "og:site_name", content: "JumboCM" },
+      { property: "og:url", content: "https://wealthbridgecm.vercel.app/" },
+      { property: "og:site_name", content: "WealthBridgeCM" },
     ],
     links: [
-      { rel: "canonical", href: "https://jumbocm.vercel.app/" },
+      { rel: "canonical", href: "https://wealthbridgecm.vercel.app/" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -115,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "apple-touch-icon", href: "/jumbocm-app-icon-192.png" },
+      { rel: "apple-touch-icon", href: "/wealthbridgecm-app-icon-192.png" },
     ],
   }),
   shellComponent: RootShell,
