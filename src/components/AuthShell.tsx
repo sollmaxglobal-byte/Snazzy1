@@ -16,7 +16,7 @@ export function AuthShell({ children, compact = false }: { children: ReactNode; 
         className={`relative mx-auto flex w-full max-w-md flex-col px-5 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-[calc(env(safe-area-inset-top)+0.75rem)] ${compact ? "h-dvh" : "min-h-dvh"}`}
       >
         <header className="flex shrink-0 items-center justify-between">
-          <Link to="/" aria-label="JumboCM home" className="inline-flex items-center">
+          <Link to="/" aria-label="WealthBridgeCM home" className="inline-flex items-center">
             <BrandLogo className="h-8 text-auth-foreground" />
           </Link>
           <LanguageToggle />
@@ -25,7 +25,7 @@ export function AuthShell({ children, compact = false }: { children: ReactNode; 
           {children}
         </main>
         <footer className="flex shrink-0 items-center justify-center gap-1.5 text-[11px] text-auth-muted">
-          <ShieldCheck className="h-3.5 w-3.5 text-auth-accent" /> 256-bit encrypted · JumboCM
+          <ShieldCheck className="h-3.5 w-3.5 text-auth-accent" /> 256-bit encrypted · WealthBridgeCM
         </footer>
       </div>
     </div>

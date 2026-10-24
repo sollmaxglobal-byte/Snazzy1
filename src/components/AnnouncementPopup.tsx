@@ -36,7 +36,7 @@ export function AnnouncementPopup() {
         if (error || cancelled || !data) return;
         const row = data as unknown as Announcement;
         if (!row.announcement_enabled || !row.announcement_message) return;
-        const key = `jumbocm-announcement-${row.announcement_version ?? 1}`;
+        const key = `wealthbridgecm-announcement-${row.announcement_version ?? 1}`;
         if (typeof window !== "undefined" && localStorage.getItem(key) === "seen") return;
         setA(row);
         setOpen(true);
@@ -51,7 +51,7 @@ export function AnnouncementPopup() {
 
   function dismiss() {
     if (a && typeof window !== "undefined") {
-      localStorage.setItem(`jumbocm-announcement-${a.announcement_version ?? 1}`, "seen");
+      localStorage.setItem(`wealthbridgecm-announcement-${a.announcement_version ?? 1}`, "seen");
     }
     setOpen(false);
   }

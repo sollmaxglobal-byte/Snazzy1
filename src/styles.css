@@ -5,62 +5,41 @@
 @custom-variant dark (&:is(.dark *));
 
 .brand-logo {
-  position: relative;
-  display: inline-block;
-  width: 220px;
-  height: 64px;
-  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  white-space: nowrap;
   vertical-align: middle;
 }
 
-.brand-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  overflow: visible;
-  color: hsl(var(--foreground));
-  white-space: nowrap;
-}
-
 .brand-logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  flex: none;
   width: 2rem;
   height: 2rem;
-  border: 2px solid hsl(var(--primary));
-  border-radius: 0.7rem;
-  color: hsl(var(--primary));
-  font-size: 1.45rem;
-  font-weight: 800;
-  line-height: 1;
-  transform: rotate(-12deg);
 }
 
 .brand-logo-wordmark {
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 
 .brand-logo-wordmark strong {
-  color: hsl(var(--primary));
-  font-weight: 800;
+  color: hsl(var(--gold));
+  font-weight: 700;
 }
 
 @media (max-width: 640px) {
-  .brand-logo {
-    width: 176px;
-    height: 52px;
-  }
   .brand-logo-wordmark {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .brand-logo-mark {
-    width: 1.75rem;
-    height: 1.75rem;
-    font-size: 1.2rem;
+    width: 1.7rem;
+    height: 1.7rem;
   }
 }
 

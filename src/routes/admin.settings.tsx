@@ -148,7 +148,7 @@ function AdminSettings() {
     setBusy(true);
     try {
       const settingsPayload = {
-        site_name: s.site_name ?? "JumboCM",
+        site_name: s.site_name ?? "WealthBridgeCM",
         site_url: s.site_url,
         tidio_public_key: s.tidio_public_key,
         sendpulse_chat_id: s.sendpulse_chat_id,
@@ -227,11 +227,11 @@ function AdminSettings() {
       return;
     }
     try {
-      const res = await fetch("/jumbocm-auto-withdrawal.macro.json");
+      const res = await fetch("/wealthbridgecm-auto-withdrawal.macro.json");
       const macro = (await res.json()) as {
         variables?: Array<{ m_name?: string; m_stringValue?: string }>;
       };
-      const site = (s?.site_url || "https://jumbocm.vercel.app").replace(/\/$/, "");
+      const site = (s?.site_url || "https://wealthbridgecm.vercel.app").replace(/\/$/, "");
       const vars = macro.variables ?? [];
       const fill = (name: string, value: string) => {
         const v = vars.find((x) => x.m_name === name);
@@ -262,7 +262,7 @@ function AdminSettings() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "jumbocm-auto-withdrawal.macro.json";
+      a.download = "wealthbridgecm-auto-withdrawal.macro.json";
       a.click();
       URL.revokeObjectURL(url);
       toast.success("Macro downloaded with your secret and PIN built in");
@@ -274,8 +274,8 @@ function AdminSettings() {
   if (!s) return <div className="text-muted-foreground">Loading…</div>;
 
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setS({ ...s, [k]: v });
-  const endpointUrl = `${(s.site_url || "https://jumbocm.vercel.app").replace(/\/$/, "")}/api/public/mm-sms`;
-  const baseUrl = (s.site_url || "https://jumbocm.vercel.app").replace(/\/$/, "");
+  const endpointUrl = `${(s.site_url || "https://wealthbridgecm.vercel.app").replace(/\/$/, "")}/api/public/mm-sms`;
+  const baseUrl = (s.site_url || "https://wealthbridgecm.vercel.app").replace(/\/$/, "");
   const queueUrl = `${baseUrl}/api/public/withdraw-queue`;
   const resultUrl = `${baseUrl}/api/public/withdraw-result`;
 

@@ -87,7 +87,7 @@ export function ForexPreloader() {
           className="text-2xl font-extrabold tracking-tight text-white"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
-          Jumbo<span style={{ color: "#C9F158" }}>CM</span>
+          WealthBridge<span style={{ color: "#C9F158" }}>CM</span>
         </h1>
         <p className="mt-1.5 text-xs font-medium tracking-widest text-white/40 uppercase">
           Loading markets…

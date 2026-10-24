@@ -31,10 +31,10 @@ import { PushToggle } from "@/components/PushToggle";
 export const Route = createFileRoute("/dashboard/profile")({
   head: () => ({
     meta: [
-      { title: "Account & profile — JumboCM" },
-      { name: "description", content: "Manage your JumboCM profile, payout methods and account security." },
-      { property: "og:title", content: "Account & profile — JumboCM" },
-      { property: "og:description", content: "Manage your JumboCM profile and account preferences." },
+      { title: "Account & profile — WealthBridgeCM" },
+      { name: "description", content: "Manage your WealthBridgeCM profile, payout methods and account security." },
+      { property: "og:title", content: "Account & profile — WealthBridgeCM" },
+      { property: "og:description", content: "Manage your WealthBridgeCM profile and account preferences." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -176,7 +176,7 @@ function ProfilePage() {
   };
   const shareReferral = async () => {
     if (!referralLink) return;
-    if (navigator.share) await navigator.share({ title: "JumboCM", text: "Join me on JumboCM", url: referralLink }).catch(() => undefined);
+    if (navigator.share) await navigator.share({ title: "WealthBridgeCM", text: "Join me on WealthBridgeCM", url: referralLink }).catch(() => undefined);
     else copyReferral();
   };
 
@@ -198,7 +198,7 @@ function ProfilePage() {
               {initials(profile?.full_name, user?.email)}
             </div>
             <div className="min-w-0">
-              <p className="truncate text-lg font-bold text-foreground">{profile?.full_name || "JumboCM member"}</p>
+              <p className="truncate text-lg font-bold text-foreground">{profile?.full_name || "WealthBridgeCM member"}</p>
               <p className="truncate text-sm text-muted-foreground">{user?.email}</p>
               <span className={`mt-1.5 inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-bold uppercase ${verification.className}`}>
                 <BadgeCheck className="h-3 w-3" /> {verification.label}
@@ -282,7 +282,7 @@ function ProfilePage() {
           </section>
 
           <Button variant="outline" className="h-12 w-full border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive" onClick={async () => { await signOut(); navigate({ to: "/" }); }}><LogOut /> Sign out</Button>
-          <p className="text-center text-[11px] text-muted-foreground">JumboCM · Secure account access</p>
+          <p className="text-center text-[11px] text-muted-foreground">WealthBridgeCM · Secure account access</p>
         </div>
       </div>
     </div>

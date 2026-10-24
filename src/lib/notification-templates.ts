@@ -40,15 +40,15 @@ export const adminRequestNotification = {
 export const adminSmsTemplates = {
   en: {
     deposit:
-      "JumboCM: New deposit request from {{name}} for {{amount}} via {{method}}. Ref {{transaction_id}}. Review: {{review_url}}",
+      "WealthBridgeCM: New deposit request from {{name}} for {{amount}} via {{method}}. Ref {{transaction_id}}. Review: {{review_url}}",
     withdrawal:
-      "JumboCM: New withdrawal request from {{name}} for {{amount}} via {{method}}. Ref {{transaction_id}}. Review: {{review_url}}",
+      "WealthBridgeCM: New withdrawal request from {{name}} for {{amount}} via {{method}}. Ref {{transaction_id}}. Review: {{review_url}}",
   },
   fr: {
     deposit:
-      "JumboCM : Nouvelle demande de dépôt de {{name}} pour {{amount}} via {{method}}. Réf. {{transaction_id}}. Vérifier : {{review_url}}",
+      "WealthBridgeCM : Nouvelle demande de dépôt de {{name}} pour {{amount}} via {{method}}. Réf. {{transaction_id}}. Vérifier : {{review_url}}",
     withdrawal:
-      "JumboCM : Nouvelle demande de retrait de {{name}} pour {{amount}} via {{method}}. Réf. {{transaction_id}}. Vérifier : {{review_url}}",
+      "WealthBridgeCM : Nouvelle demande de retrait de {{name}} pour {{amount}} via {{method}}. Réf. {{transaction_id}}. Vérifier : {{review_url}}",
   },
 };
 

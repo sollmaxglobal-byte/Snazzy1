@@ -25,16 +25,16 @@ import { useMyReferrals } from "@/hooks/useMyReferrals";
 export const Route = createFileRoute("/dashboard/refer")({
   head: () => ({
     meta: [
-      { title: "Refer & Earn — JumboCM" },
+      { title: "Refer & Earn — WealthBridgeCM" },
       {
         name: "description",
         content:
-          "Share your JumboCM referral link and earn commission on every friend who invests.",
+          "Share your WealthBridgeCM referral link and earn commission on every friend who invests.",
       },
-      { property: "og:title", content: "Refer & Earn — JumboCM" },
+      { property: "og:title", content: "Refer & Earn — WealthBridgeCM" },
       {
         property: "og:description",
-        content: "Invite friends to JumboCM and earn commission on their investments.",
+        content: "Invite friends to WealthBridgeCM and earn commission on their investments.",
       },
       { property: "og:type", content: "website" },
       { property: "twitter:card", content: "summary" },
@@ -126,8 +126,8 @@ function ReferAndEarnPage() {
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({
-          title: "Join JumboCM",
-          text: "Join me on JumboCM and start investing. Use my referral link:",
+          title: "Join WealthBridgeCM",
+          text: "Join me on WealthBridgeCM and start investing. Use my referral link:",
           url: link,
         });
         return;
@@ -139,7 +139,7 @@ function ReferAndEarnPage() {
   };
 
   const whatsapp = link
-    ? `https://wa.me/?text=${encodeURIComponent(`Join me on JumboCM and start investing: ${link}`)}`
+    ? `https://wa.me/?text=${encodeURIComponent(`Join me on WealthBridgeCM and start investing: ${link}`)}`
     : "";
 
   return (

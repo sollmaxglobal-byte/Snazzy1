@@ -16,9 +16,9 @@ export const Route = createFileRoute("/invest/confirm/$planId")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [
-      { title: "Confirm your investment — JumboCM" },
+      { title: "Confirm your investment — WealthBridgeCM" },
       { name: "description", content: "Review and confirm your investment plan activation." },
-      { property: "og:title", content: "Confirm your investment — JumboCM" },
+      { property: "og:title", content: "Confirm your investment — WealthBridgeCM" },
       {
         property: "og:description",
         content: "Review and confirm your investment plan activation.",

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 
 /** Full-page shell used by the standalone deposit checkout steps (outside the dashboard). */
 export function CheckoutShell({
@@ -18,7 +19,7 @@ export function CheckoutShell({
     <div className="flex h-dvh flex-col overflow-hidden bg-background">
       <header className="shrink-0 border-b border-border bg-card">
         <div className="mx-auto flex max-w-xl items-center gap-2 px-4 py-3">
-          <img src="/jumbocm-logo.png" alt="JumboCM" className="h-9 w-auto object-contain" />
+          <BrandLogo />
           <div className="min-w-0">
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
               Secure checkout · {step}/{total}

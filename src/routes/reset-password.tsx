@@ -6,10 +6,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
-    meta: [{ title: "Set new password — JumboCM" }],
+    meta: [{ title: "Set new password — WealthBridgeCM" }],
   }),
   component: ResetPasswordPage,
 });
@@ -97,7 +98,7 @@ function ResetPasswordPage() {
     <div className="grid min-h-screen place-items-center bg-background p-6">
       <div className="w-full max-w-sm">
         <div className="mb-6 flex items-center">
-          <img src="/jumbocm-logo.png" alt="JumboCM" className="h-10 w-auto object-contain" />
+          <BrandLogo />
         </div>
         <h1 className="font-display text-3xl text-primary">Set a new password</h1>
 

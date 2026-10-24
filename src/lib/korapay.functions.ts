@@ -66,8 +66,8 @@ export const startKorapayDeposit = createServerFn({ method: "POST" })
         reference,
         amount: data.amount,
         phone: `237${phone}`,
-        customerName: "JumboCM member",
-        customerEmail: claims?.email ?? "member@jumbocm.app",
+        customerName: "WealthBridgeCM member",
+        customerEmail: claims?.email ?? "member@wealthbridgecm.app",
         notificationUrl: `${origin}/api/public/korapay-webhook`,
       });
 

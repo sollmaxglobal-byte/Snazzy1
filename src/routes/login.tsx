@@ -11,13 +11,13 @@ import { AuthShell, AuthField } from "@/components/AuthShell";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — JumboCM" },
+      { title: "Sign in — WealthBridgeCM" },
       {
         name: "description",
-        content: "Sign in to your JumboCM dashboard to track deposits, plans and payouts.",
+        content: "Sign in to your WealthBridgeCM dashboard to track deposits, plans and payouts.",
       },
-      { property: "og:title", content: "Sign in — JumboCM" },
-      { property: "og:description", content: "Access your JumboCM account." },
+      { property: "og:title", content: "Sign in — WealthBridgeCM" },
+      { property: "og:description", content: "Access your WealthBridgeCM account." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

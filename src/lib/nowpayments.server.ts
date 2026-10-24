@@ -56,7 +56,7 @@ export async function createNowpaymentsInvoice(input: {
       price_amount: input.usdAmount,
       price_currency: "usd",
       order_id: input.reference,
-      order_description: "JumboCM wallet deposit",
+      order_description: "WealthBridgeCM wallet deposit",
       ipn_callback_url: input.ipnUrl,
       success_url: input.successUrl,
       cancel_url: input.cancelUrl,
