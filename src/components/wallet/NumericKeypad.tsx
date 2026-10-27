@@ -2,7 +2,7 @@ import { Delete } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * In-app numeric keypad used for money amounts (deposit / withdrawal).
+ * Numeric keypad used for money amounts (deposit / withdrawal).
  * Renders a 3-column grid of large tap targets and reports the raw digit string,
  * so callers keep owning the amount state and its validation.
  */
@@ -23,6 +23,11 @@ const VARIANTS: Record<KeypadVariant, { key: string; accent: string }> = {
   },
 };
 
+const SIZES = {
+  md: "h-14 text-2xl",
+  lg: "h-16 text-3xl",
+} as const;
+
 function tapFeedback() {
   try {
     navigator.vibrate?.(8);
@@ -35,6 +40,7 @@ export function NumericKeypad({
   value,
   onChange,
   variant = "gold",
+  size = "md",
   disabled = false,
   maxLength = 10,
   label = "Numeric keypad",
@@ -43,6 +49,7 @@ export function NumericKeypad({
   value: string;
   onChange: (value: string) => void;
   variant?: KeypadVariant;
+  size?: keyof typeof SIZES;
   disabled?: boolean;
   maxLength?: number;
   label?: string;
@@ -81,7 +88,8 @@ export function NumericKeypad({
               isBackspace ? "Delete last digit" : key === "00" ? "Double zero" : `Digit ${key}`
             }
             className={cn(
-              "flex h-14 touch-manipulation select-none items-center justify-center rounded-2xl border text-2xl font-bold leading-none tabular-nums transition duration-75 active:scale-[0.97] disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2",
+              "flex touch-manipulation select-none items-center justify-center rounded-2xl border font-bold leading-none tabular-nums transition duration-75 active:scale-[0.97] disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2",
+              SIZES[size],
               VARIANTS[variant].key,
               isBackspace && VARIANTS[variant].accent,
             )}

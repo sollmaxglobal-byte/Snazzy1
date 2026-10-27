@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { formatXAF, formatDate, txRef } from "@/lib/format";
 import { DualMoney } from "@/components/DualMoney";
 import { StatusBadge } from "@/components/StatusBadge";
-import { NumericKeypad } from "@/components/wallet/NumericKeypad";
+import { AmountKeypadScreen } from "@/components/wallet/AmountKeypadScreen";
 
 export const Route = createFileRoute("/dashboard/withdraw")({
   component: WithdrawPage,
@@ -62,6 +62,7 @@ function WithdrawPage() {
   const [accounts, setAccounts] = useState<PayoutAccount[]>([]);
   const [busy, setBusy] = useState(false);
   const [amount, setAmount] = useState("");
+  const [keypadOpen, setKeypadOpen] = useState(false);
   const [limits, setLimits] = useState({ min: 250, max: 50_000_000 });
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -262,40 +263,32 @@ function WithdrawPage() {
           <h2 className="font-display text-lg text-primary">Withdrawal details</h2>
         </div>
         <div className="grid gap-4 p-5 md:grid-cols-2">
-          <div className="md:col-span-2 md:grid md:grid-cols-2 md:items-start md:gap-5">
-            <div>
-              <Label htmlFor="amount">{t("common.amount")}</Label>
-              <div className="relative mt-1">
-                <Input
-                  id="amount"
-                  name="amount"
-                  type="number"
-                  min={limits.min}
-                  max={limits.max}
-                  step={1}
-                  required
-                  value={amount}
-                  inputMode="none"
-                  onChange={(e) => setAmount(e.target.value.replace(/\D/g, "").slice(0, 9))}
-                  placeholder="0"
-                  className="pr-14 text-lg font-semibold tabular-nums"
-                />
-                <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs font-semibold text-muted-foreground">
-                  XAF
-                </span>
-              </div>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Minimum withdrawal: {formatXAF(limits.min)} — maximum {formatXAF(limits.max)}.
-              </p>
+          <div>
+            <Label htmlFor="amount">{t("common.amount")}</Label>
+            <div className="relative mt-1">
+              <Input
+                id="amount"
+                name="amount"
+                type="number"
+                min={limits.min}
+                max={limits.max}
+                step={1}
+                required
+                value={amount}
+                readOnly
+                inputMode="none"
+                onClick={() => setKeypadOpen(true)}
+                placeholder="0"
+                className="cursor-pointer pr-14 text-lg font-semibold tabular-nums"
+              />
+              <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs font-semibold text-muted-foreground">
+                XAF
+              </span>
             </div>
-            <NumericKeypad
-              value={amount}
-              onChange={setAmount}
-              variant="navy"
-              maxLength={9}
-              label="Withdrawal amount keypad"
-              className="mt-3 md:mt-6"
-            />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Tap the amount to enter it on the keypad. Minimum withdrawal: {formatXAF(limits.min)}{" "}
+              — maximum {formatXAF(limits.max)}.
+            </p>
           </div>
           <div>
             <Label htmlFor="method">{t("common.method")}</Label>
@@ -402,6 +395,18 @@ function WithdrawPage() {
           </div>
         )}
       </div>
+
+      <AmountKeypadScreen
+        open={keypadOpen}
+        title="Enter withdrawal amount"
+        value={amount}
+        onCommit={setAmount}
+        onClose={() => setKeypadOpen(false)}
+        variant="navy"
+        currency="XAF"
+        hint={`Minimum ${formatXAF(limits.min)} • Maximum ${formatXAF(limits.max)}`}
+        maxLength={9}
+      />
     </div>
   );
 }

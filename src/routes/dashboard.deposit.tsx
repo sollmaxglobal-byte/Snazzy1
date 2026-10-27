@@ -10,7 +10,7 @@ import { startNowpaymentsDeposit } from "@/lib/nowpayments.functions";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { NumericKeypad } from "@/components/wallet/NumericKeypad";
+import { AmountKeypadScreen } from "@/components/wallet/AmountKeypadScreen";
 
 export const Route = createFileRoute("/dashboard/deposit")({ component: DepositPage });
 
@@ -78,6 +78,7 @@ function DepositPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [amount, setAmount] = useState("");
+  const [keypadOpen, setKeypadOpen] = useState(false);
   const [method, setMethod] = useState<MethodId | null>(null);
   const [reference] = useState(makeReference);
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -305,10 +306,12 @@ function DepositPage() {
       </div>
     );
 
+  // While the keypad screen is open the page is lifted above the app's floating
+  // banners (push prompt z-[80]) so nothing covers the keypad.
   return (
     <main
       className="fixed inset-0 z-30 mx-auto flex w-full max-w-md flex-col overflow-hidden px-5 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-4 text-white"
-      style={{ background: INK }}
+      style={{ background: INK, zIndex: keypadOpen ? 90 : undefined }}
     >
       {/* progress */}
       <div className="flex shrink-0 items-center gap-2">
@@ -322,7 +325,7 @@ function DepositPage() {
         ))}
         <span className="h-1.5 flex-1 rounded-full bg-[#2c2c33]" />
       </div>
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto py-3 [&>*]:my-auto">
+      <div className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden py-3">
       <AnimatePresence mode="wait">
         {step === 1 && (
           <motion.div
@@ -338,26 +341,25 @@ function DepositPage() {
 
 
             <div className="flex flex-col items-center gap-3">
-              <div
-                className="flex w-full items-center justify-center rounded-2xl border-2 px-4 py-4"
+              <button
+                type="button"
+                onClick={() => setKeypadOpen(true)}
+                aria-label="Enter deposit amount"
+                className="flex w-full items-center justify-center rounded-2xl border-2 px-4 py-4 transition active:scale-[0.99]"
                 style={{ borderColor: GOLD, background: "#141418" }}
               >
-                <Input
-                  id="deposit-amount"
-                  value={amount ? money(amount) : ""}
-                  onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
-                  placeholder="0"
-                  inputMode="none"
-                  aria-label="Amount in FCFA"
-                  className="h-auto w-full border-0 bg-transparent p-0 text-center text-[30px] font-extrabold tracking-tight shadow-none focus-visible:ring-0"
+                <span
+                  className="text-center text-[30px] font-extrabold tracking-tight tabular-nums"
                   style={{ color: GOLD }}
-                />
+                >
+                  {amount ? money(amount) : "0"}
+                </span>
                 <span className="pl-2 text-[26px] font-extrabold" style={{ color: GOLD }}>
                   FCFA
                 </span>
-              </div>
+              </button>
               <p className="text-sm text-[#9a9aa2]">
-                Min {money(minAmount)} • Max {money(maxAmount)}
+                Tap the amount to open the keypad • Min {money(minAmount)} • Max {money(maxAmount)}
               </p>
               {amountError && <p className="text-sm text-destructive">{amountError}</p>}
             </div>
@@ -382,14 +384,6 @@ function DepositPage() {
                 );
               })}
             </div>
-
-            <NumericKeypad
-              value={amount}
-              onChange={setAmount}
-              variant="gold"
-              maxLength={9}
-              label="Deposit amount keypad"
-            />
           </motion.div>
         )}
 
@@ -808,6 +802,18 @@ function DepositPage() {
           </div>
         </div>
       )}
+
+      <AmountKeypadScreen
+        open={keypadOpen}
+        title="Enter deposit amount"
+        value={amount}
+        onCommit={setAmount}
+        onClose={() => setKeypadOpen(false)}
+        variant="gold"
+        currency="FCFA"
+        hint={`Min ${money(minAmount)} • Max ${money(maxAmount)}`}
+        maxLength={9}
+      />
     </main>
   );
 }
