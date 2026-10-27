@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { formatXAF, formatDate, txRef } from "@/lib/format";
 import { DualMoney } from "@/components/DualMoney";
 import { StatusBadge } from "@/components/StatusBadge";
+import { NumericKeypad } from "@/components/wallet/NumericKeypad";
 
 export const Route = createFileRoute("/dashboard/withdraw")({
   component: WithdrawPage,
@@ -60,6 +61,7 @@ function WithdrawPage() {
   const [methods, setMethods] = useState<WMethod[]>([]);
   const [accounts, setAccounts] = useState<PayoutAccount[]>([]);
   const [busy, setBusy] = useState(false);
+  const [amount, setAmount] = useState("");
   const [limits, setLimits] = useState({ min: 250, max: 50_000_000 });
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -179,6 +181,7 @@ function WithdrawPage() {
       );
       toast.success(t("withdraw.submitted"));
       form.reset();
+      setAmount("");
       navigate({ to: "/dashboard/wallet", search: { filter: "Withdrawals" } as never });
     } catch (err) {
       const msg = err instanceof z.ZodError ? err.issues[0].message : (err as Error).message;
@@ -221,12 +224,7 @@ function WithdrawPage() {
           </div>
           <button
             type="button"
-            onClick={() => {
-              const form = formRef.current;
-              if (!form) return;
-              const input = form.elements.namedItem("amount") as HTMLInputElement | null;
-              if (input) input.value = String(Math.floor(balance));
-            }}
+            onClick={() => setAmount(String(Math.floor(balance)))}
             className="shrink-0 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white transition hover:bg-white/20 active:scale-95"
           >
             Max
@@ -264,26 +262,40 @@ function WithdrawPage() {
           <h2 className="font-display text-lg text-primary">Withdrawal details</h2>
         </div>
         <div className="grid gap-4 p-5 md:grid-cols-2">
-          <div>
-            <Label htmlFor="amount">{t("common.amount")}</Label>
-            <div className="relative mt-1">
-              <Input
-                id="amount"
-                name="amount"
-                type="number"
-                min={limits.min}
-                max={limits.max}
-                step={1}
-                required
-                className="pr-14 text-lg font-semibold"
-              />
-              <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs font-semibold text-muted-foreground">
-                XAF
-              </span>
+          <div className="md:col-span-2 md:grid md:grid-cols-2 md:items-start md:gap-5">
+            <div>
+              <Label htmlFor="amount">{t("common.amount")}</Label>
+              <div className="relative mt-1">
+                <Input
+                  id="amount"
+                  name="amount"
+                  type="number"
+                  min={limits.min}
+                  max={limits.max}
+                  step={1}
+                  required
+                  value={amount}
+                  inputMode="none"
+                  onChange={(e) => setAmount(e.target.value.replace(/\D/g, "").slice(0, 9))}
+                  placeholder="0"
+                  className="pr-14 text-lg font-semibold tabular-nums"
+                />
+                <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs font-semibold text-muted-foreground">
+                  XAF
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Minimum withdrawal: {formatXAF(limits.min)} — maximum {formatXAF(limits.max)}.
+              </p>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Minimum withdrawal: {formatXAF(limits.min)} — maximum {formatXAF(limits.max)}.
-            </p>
+            <NumericKeypad
+              value={amount}
+              onChange={setAmount}
+              variant="navy"
+              maxLength={9}
+              label="Withdrawal amount keypad"
+              className="mt-3 md:mt-6"
+            />
           </div>
           <div>
             <Label htmlFor="method">{t("common.method")}</Label>

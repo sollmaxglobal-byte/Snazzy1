@@ -10,6 +10,7 @@ import { startNowpaymentsDeposit } from "@/lib/nowpayments.functions";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { NumericKeypad } from "@/components/wallet/NumericKeypad";
 
 export const Route = createFileRoute("/dashboard/deposit")({ component: DepositPage });
 
@@ -321,7 +322,7 @@ function DepositPage() {
         ))}
         <span className="h-1.5 flex-1 rounded-full bg-[#2c2c33]" />
       </div>
-      <div className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden py-3">
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto py-3 [&>*]:my-auto">
       <AnimatePresence mode="wait">
         {step === 1 && (
           <motion.div
@@ -346,7 +347,7 @@ function DepositPage() {
                   value={amount ? money(amount) : ""}
                   onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
                   placeholder="0"
-                  inputMode="numeric"
+                  inputMode="none"
                   aria-label="Amount in FCFA"
                   className="h-auto w-full border-0 bg-transparent p-0 text-center text-[30px] font-extrabold tracking-tight shadow-none focus-visible:ring-0"
                   style={{ color: GOLD }}
@@ -381,6 +382,14 @@ function DepositPage() {
                 );
               })}
             </div>
+
+            <NumericKeypad
+              value={amount}
+              onChange={setAmount}
+              variant="gold"
+              maxLength={9}
+              label="Deposit amount keypad"
+            />
           </motion.div>
         )}
 
