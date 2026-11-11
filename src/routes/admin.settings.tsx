@@ -148,7 +148,7 @@ function AdminSettings() {
     setBusy(true);
     try {
       const settingsPayload = {
-        site_name: s.site_name ?? "JumboCM",
+        site_name: s.site_name ?? "WEALTHBRIDGECM",
         site_url: s.site_url,
         tidio_public_key: s.tidio_public_key,
         sendpulse_chat_id: s.sendpulse_chat_id,
@@ -231,7 +231,7 @@ function AdminSettings() {
       const macro = (await res.json()) as {
         variables?: Array<{ m_name?: string; m_stringValue?: string }>;
       };
-      const site = (s?.site_url || "https://jumbocm.vercel.app").replace(/\/$/, "");
+      const site = (s?.site_url || "https://wealthbridgecm.lovable.app").replace(/\/$/, "");
       const vars = macro.variables ?? [];
       const fill = (name: string, value: string) => {
         const v = vars.find((x) => x.m_name === name);
@@ -274,8 +274,8 @@ function AdminSettings() {
   if (!s) return <div className="text-muted-foreground">Loading…</div>;
 
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setS({ ...s, [k]: v });
-  const endpointUrl = `${(s.site_url || "https://jumbocm.vercel.app").replace(/\/$/, "")}/api/public/mm-sms`;
-  const baseUrl = (s.site_url || "https://jumbocm.vercel.app").replace(/\/$/, "");
+  const endpointUrl = `${(s.site_url || "https://wealthbridgecm.lovable.app").replace(/\/$/, "")}/api/public/mm-sms`;
+  const baseUrl = (s.site_url || "https://wealthbridgecm.lovable.app").replace(/\/$/, "");
   const queueUrl = `${baseUrl}/api/public/withdraw-queue`;
   const resultUrl = `${baseUrl}/api/public/withdraw-result`;
 

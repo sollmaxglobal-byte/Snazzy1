@@ -20,8 +20,11 @@ type Plan = {
 export const Route = createFileRoute("/plans")({
   head: () => ({
     meta: [
-      { title: "Investment Plans — JumboCM" },
-      { name: "description", content: "Browse JumboCM investment plans with daily ROI in XAF." },
+      { title: "Investment Plans — WEALTHBRIDGECM" },
+      {
+        name: "description",
+        content: "Browse WEALTHBRIDGECM investment plans with daily ROI in XAF.",
+      },
     ],
   }),
   component: PlansPage,

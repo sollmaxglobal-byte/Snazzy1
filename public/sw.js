@@ -1,4 +1,4 @@
-/* JumboCM push messaging service worker.
+/* WEALTHBRIDGECM push messaging service worker.
    Handles web-push notifications only — no app-shell caching. */
 
 self.addEventListener("install", () => self.skipWaiting());
@@ -9,14 +9,14 @@ self.addEventListener("push", (event) => {
   try {
     payload = event.data ? event.data.json() : {};
   } catch {
-    payload = { title: "JumboCM", body: event.data ? event.data.text() : "" };
+    payload = { title: "WEALTHBRIDGECM", body: event.data ? event.data.text() : "" };
   }
 
-  const title = payload.title || "JumboCM";
+  const title = payload.title || "WEALTHBRIDGECM";
   const options = {
     body: payload.body || "",
-    icon: "/jumbocm-app-icon-192.png",
-    badge: "/jumbocm-app-icon-192.png",
+    icon: "/app-icon-192.png",
+    badge: "/app-icon-192.png",
     tag: payload.tag || undefined,
     renotify: Boolean(payload.tag),
     vibrate: [80, 40, 80],

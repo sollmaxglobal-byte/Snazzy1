@@ -89,7 +89,7 @@ export function AppInstallAction({ compact = false }: AppInstallActionProps) {
               )
           : install
       }
-      aria-label={showIosHint ? "How to install JumboCM" : "Install JumboCM app"}
+      aria-label={showIosHint ? "How to install WEALTHBRIDGECM" : "Install WEALTHBRIDGECM app"}
     >
       {showIosHint ? (
         <Share className="mr-2 h-4 w-4" aria-hidden />
@@ -178,7 +178,7 @@ export function AppInstallPrompt() {
   return (
     <aside className="fixed inset-x-3 bottom-20 z-[70] mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-border bg-card p-3 text-card-foreground shadow-elegant md:bottom-5">
       <img
-        src="/jumbocm-app-icon-192.png"
+        src="/app-icon-192.png"
         alt=""
         width={48}
         height={48}
@@ -186,7 +186,7 @@ export function AppInstallPrompt() {
       />
       <div className="min-w-0 flex-1">
         <p className="text-sm font-bold">
-          {lang === "fr" ? "Installer JumboCM" : "Install JumboCM"}
+          {lang === "fr" ? "Installer WEALTHBRIDGECM" : "Install WEALTHBRIDGECM"}
         </p>
         <p className="text-xs font-medium text-muted-foreground">
           {showIosHint
