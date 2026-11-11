@@ -6,6 +6,7 @@ import { useI18n } from "@/hooks/useI18n";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { BrandLogo } from "@/components/BrandLogo";
 import { PushSetup } from "@/components/PushSetup";
 import { isStandalone } from "@/lib/push-client";
 
@@ -58,11 +59,7 @@ function DashboardLayout() {
       <header className="sticky top-0 z-30 bg-[#F5F4EF]/85 pt-[env(safe-area-inset-top)] backdrop-blur-md">
         <div className="app-header mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link to="/" className="flex items-center">
-            <img
-              src="/jumbocm-dashboard-logo.png"
-              alt="JumboCM"
-              className="h-8 w-[140px] object-contain object-left sm:h-9 sm:w-[160px]"
-            />
+            <BrandLogo />
           </Link>
           <div className="flex items-center gap-1.5">
             <LanguageToggle />

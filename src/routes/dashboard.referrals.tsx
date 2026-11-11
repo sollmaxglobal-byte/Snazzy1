@@ -8,12 +8,12 @@ import { useMyReferrals } from "@/hooks/useMyReferrals";
 export const Route = createFileRoute("/dashboard/referrals")({
   head: () => ({
     meta: [
-      { title: "My referrals — JumboCM" },
+      { title: "My referrals — WEALTHBRIDGECM" },
       {
         name: "description",
-        content: "Track everyone you referred to JumboCM and the investment plan they are running.",
+        content: "Track everyone you referred to WEALTHBRIDGECM and the investment plan they are running.",
       },
-      { property: "og:title", content: "My referrals — JumboCM" },
+      { property: "og:title", content: "My referrals — WEALTHBRIDGECM" },
       {
         property: "og:description",
         content: "See your referral team and their active investment plans.",
