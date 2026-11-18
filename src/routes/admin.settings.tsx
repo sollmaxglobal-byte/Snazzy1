@@ -12,6 +12,7 @@ import {
   EyeOff,
   Copy,
   Download,
+  MapPin,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { normalizeWhatsApp } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/admin/settings")({
   component: AdminSettings,
@@ -168,7 +170,8 @@ function AdminSettings() {
         announcement_enabled: !!s.announcement_enabled,
         announcement_title: s.announcement_title,
         announcement_message: s.announcement_message,
-        announcement_link: s.announcement_link,
+        // Stored as a clean wa.me link when the admin entered a WhatsApp number.
+        announcement_link: normalizeWhatsApp(s.announcement_link)?.link ?? s.announcement_link,
         announcement_link_label: s.announcement_link_label,
         announcement_version: (s.announcement_version ?? 1) + (reshow ? 1 : 0),
         auto_approve_enabled: s.auto_approve_enabled ?? true,
@@ -274,6 +277,7 @@ function AdminSettings() {
   if (!s) return <div className="text-muted-foreground">Loading…</div>;
 
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setS({ ...s, [k]: v });
+  const whatsapp = normalizeWhatsApp(s.announcement_link);
   const endpointUrl = `${(s.site_url || "https://wealthbridgecm.lovable.app").replace(/\/$/, "")}/api/public/mm-sms`;
   const baseUrl = (s.site_url || "https://wealthbridgecm.lovable.app").replace(/\/$/, "");
   const queueUrl = `${baseUrl}/api/public/withdraw-queue`;
@@ -359,8 +363,64 @@ function AdminSettings() {
     </p>
   </section>
 
-  <section className="space-y-3 rounded-2xl border border-border bg-card p-5">
-  <h2 className="font-display text-lg text-primary">Branding</h2>
+      <section className="space-y-4 rounded-2xl border border-border bg-card p-5">
+        <div>
+          <h2 className="flex items-center gap-2 font-display text-lg text-primary">
+            <MessageCircle className="h-5 w-5" /> WhatsApp support
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            The floating support button shown on every page of the site. The same link powers the
+            “Contact support on WhatsApp” button on deposit pages.
+          </p>
+        </div>
+        <div className="grid items-start gap-5 lg:grid-cols-[1fr_260px]">
+          <div className="space-y-2">
+            <Label htmlFor="whatsapp-number">WhatsApp number</Label>
+            <Input
+              id="whatsapp-number"
+              type="tel"
+              inputMode="tel"
+              value={s.announcement_link ?? ""}
+              onChange={(e) => set("announcement_link", e.target.value)}
+              placeholder="+237 6 70 00 00 00"
+              className="text-base"
+            />
+            {whatsapp ? (
+              <p className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400">
+                <MapPin className="h-3.5 w-3.5" /> {whatsapp.country} · {whatsapp.display}
+              </p>
+            ) : s.announcement_link?.trim() ? (
+              <p className="flex items-center gap-1.5 text-xs text-amber-500">
+                <MapPin className="h-3.5 w-3.5" /> Include the country code, e.g. +237 6 70 00 00
+                00. The button stays hidden until the number is valid.
+              </p>
+            ) : (
+              <p className="text-xs text-muted-foreground">
+                No number set — the support button is hidden.
+              </p>
+            )}
+          </div>
+          <div className="rounded-xl border border-border bg-secondary/50 p-4">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Live preview
+            </p>
+            <div className="flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-background/90 py-1.5 pl-1.5 pr-3">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                <MessageCircle className="h-3.5 w-3.5" />
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                {whatsapp ? "Chat on WhatsApp" : "Hidden"}
+              </span>
+            </div>
+            <p className="mt-3 truncate font-mono text-[11px] text-muted-foreground">
+              {whatsapp?.link ?? "—"}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-3 rounded-2xl border border-border bg-card p-5">
+      <h2 className="font-display text-lg text-primary">Branding</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
             <Label>Site name</Label>
@@ -373,15 +433,6 @@ function AdminSettings() {
               onChange={(e) => set("site_url", e.target.value)}
               placeholder="https://..."
             />
-          </div>
-          <div className="sm:col-span-2">
-            <Label>WhatsApp support link</Label>
-            <Input
-              value={s.announcement_link ?? ""}
-              onChange={(e) => set("announcement_link", e.target.value)}
-              placeholder="https://wa.me/237..."
-            />
-            <p className="mt-1 text-xs text-muted-foreground">Used by the Contact Support on WhatsApp button on deposit processing pages.</p>
           </div>
         </div>
       </section>
