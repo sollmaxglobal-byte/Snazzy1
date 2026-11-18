@@ -17,6 +17,7 @@ import { ZendeskLoader } from "@/components/ZendeskLoader";
 import { Toaster } from "@/components/ui/sonner";
 import { AnnouncementPopup } from "@/components/AnnouncementPopup";
 import { ForexPreloader } from "@/components/ForexPreloader";
+import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 
 import appCss from "../styles.css?url";
 
@@ -154,6 +155,7 @@ function RootComponent() {
             <SendPulseLoader />
             <ZendeskLoader />
             <AnnouncementPopup />
+            <WhatsAppSupport />
           </AuthProvider>
         </I18nProvider>
       </ThemeProvider>
